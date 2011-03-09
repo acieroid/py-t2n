@@ -22,9 +22,9 @@ def informations(b):
     print 'Free user flash: %d' % user_flash
 
 def ls(b):
-    f = FileFinder(b, '*')
+    f = FileFinder(b, '*.*')
     for (fname, size) in f:
-        print fname
+      print 'FILE:"%s" SIZE:%d' % (fname, size) 
 
 def get(b, fname):
     r = FileReader(b, fname)
@@ -57,14 +57,16 @@ def put(b, fname):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Talk to NXT with Python')
-    parser.add_argument('-b', action='append_const', dest='action', 
+    parser.add_argument('-b', action='append_const', dest='action', default=[],
                         const=battery, help='Check battery level')
-    parser.add_argument('-i', action='append_const', dest='action',
+    parser.add_argument('-i', action='append_const', dest='action', default=[],
                         const=informations, help='Print NXT info')
-    parser.add_argument('-ls', action='append_const', dest='action',
+    parser.add_argument('-ls', action='append_const', dest='action', default=[],
                         const=ls, help='List files')
-    parser.add_argument('-put', metavar='<file>', action='append', help='Upload file')
-    parser.add_argument('-get', metavar='<file>', action='append', help='Download file')
+    parser.add_argument('-put', metavar='<file>', action='append', default=[],
+                        help='Upload file')
+    parser.add_argument('-get', metavar='<file>', action='append', default=[],
+                        help='Download file')
     parser.add_argument('-version', action='version', version='%(prog)s 0.0')
     if sys.argv[1:] == []:
         parser.print_help()
@@ -74,9 +76,9 @@ if __name__ == '__main__':
         b = nxt.locator.find_one_brick()
         for action in args.action:
             action(b)
-        for f in args.put:
-            get(b, f)
         for f in args.get:
+            get(b, f)
+        for f in args.put:
             put(b, f)
     except nxt.locator.BrickNotFoundError:
         print 'Can\'t find any NXT brick connected'
