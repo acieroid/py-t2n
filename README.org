@@ -1,4 +1,9 @@
-py-t2n is a utility to get informations, send files or receives files
+#+LINK_HOME: index.html
+#+EMAIL:
+
+py-t2n -- Talk To NXT with Python
+
+py-t2n is an utility to get informations, send files or receives files
 from a NXT Lego Brick, through USB or Bluetooth.
 
 The usage is the same as the one of [[http://www-verimag.imag.fr/~raymond/edu/lego/t2n/][t2n]], and the output is mostly the
@@ -10,18 +15,18 @@ nxt-python's scripts). py-t2n is GPLv3 licensed.
 
 * Installation
 Installation is easy:
-#+BEGIN_CODE
+#+BEGIN_SRC sh
 git clone git://github.com/acieroid/py-t2n
 cd py-t2n
 python setup.py install
-#+END_CODE
+#+END_SRC
 
 py-t2n has been tested successfully on FreeBSD and Linux, and should
 work on Microsoft Windows and any other OS where nxt-python is
 running.
 
 * Usage
-#+BEGIN_CODE
+#+BEGIN_SRC text
 usage: t2n.py [-h] [-b] [-i] [-ls] [-put <file>] [-get <file>] [-version]
 
 Talk to NXT with Python
@@ -35,4 +40,4 @@ optional arguments:
   -get <file>  Download file
   -version     Print this software's version
 
-#+END_CODE
+#+END_SRC
